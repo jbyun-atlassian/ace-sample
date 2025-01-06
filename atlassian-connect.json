@@ -1,5 +1,5 @@
 {
-    "key": "my-app",
+    "key": "my-app-with-scott",
     "name": "My app",
     "description": "My very first app",
     "baseUrl": "{{localBaseUrl}}",

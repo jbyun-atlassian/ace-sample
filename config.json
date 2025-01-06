@@ -47,9 +47,9 @@
         "store": {
             "adapter": "sequelize",
             "dialect": "sqlite3",
-            "logging": false,
-            "type": "memory"
-        }
+            "logging": true,
+            "url": "sqlite://./store.db"
+          }
     },
     // Configuration for production, which is enabled by setting
     // the NODE_ENV=production environment variable.
