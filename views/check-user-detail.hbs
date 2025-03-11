@@ -1,0 +1,68 @@
+{{!< layout}}
+<header class="aui-page-header">
+  <div class="aui-page-header-inner">
+    <div class="aui-page-header-main intro-header">
+      <h1>Check user detail!</h1>
+
+      <p class="subtitle">Welcome to {{title}}</p>
+    </div>
+  </div>
+</header>
+
+<div class="aui-page-panel main-panel">
+  <div class="aui-page-panel-inner">
+    <section class="aui-page-panel-item">
+      <div class="aui-group">
+        <div class="aui-item">
+          <p>
+            <input type="text" id="accountId"
+                placeholder="Enter accountId / if empty, it uses the logged in user account" />
+            <a id="button-v1" class="aui-button aui-button-primary" href="#" target="_parent">
+              Who are you
+              <span class="aui-icon aui-icon-small aui-iconfont-devtools-arrow-right"></span>
+            </a>
+          </p>
+
+          <h2>API call result from the button!</h2>
+          <p class="button-v1 hidden">
+            <code>
+            </code>
+          </p>
+
+          {{!-- This section is for page rendering because Button and Textbox is not showing in JSM render by some reason --}}
+          {{!-- <h2>On Page render!</h2>
+          <p>
+            {{userData}}
+          </p> --}}
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    function printUserDataV1(content) {
+      $(".button-v1 code")
+          .empty()
+          .text(content)
+          .parent()
+            .removeClass("hidden");
+    }
+
+    $("#button-v1").click(function (e) {
+      var textboxAccountId = $("#accountId").val();
+
+      $.ajax(`/getUserData?jwt={{token}}&accountId=` + encodeURIComponent(textboxAccountId), {
+        "error": function (xhr, textStatus, errorThrown) {
+            printUserDataV1("Could not retrieve addon data: " + textStatus + " – " + errorThrown);
+        },
+        "success": function (data) {
+            printUserDataV1(data);
+        }
+      });
+      e.preventDefault();
+      return false;
+    });
+  })
+</script>
