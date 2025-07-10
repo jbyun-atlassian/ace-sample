@@ -1,4 +1,4 @@
-# Atlassian Connect App using Express (sample for fetching user api)
+# Atlassian Connect App using Express (sample for fetching user api through impersonation)
 
 Congratulations!
 You've successfully created an Atlassian Connect App using the Express web application framework.
